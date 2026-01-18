@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahnaz Catering - Mudah, Hemat, Praktis</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --deep-purple: #3c1361;
+            --light-purple: #6a4c93;
+            --gold: #ffb400;
+            --light-gold: #ffd166;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            transition: var(--transition);
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .script-font {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Loading Animation */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--deep-purple);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-logo {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 8px solid var(--white);
+            border-top: 8px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header & Navigation */
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: var(--gold) !important;
+            font-weight: bold;
+        }
+
+        .navbar {
+            background-color: var(--deep-purple) !important;
+            padding: 15px 0;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .nav-link {
+            color: var(--white) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--gold) !important;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            border-radius: 20px;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: var(--gold);
+            color: var(--deep-purple);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(60, 19, 97, 0.8), rgba(60, 19, 97, 0.9)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--light-gold);
+        }
+
+        .cta-button {
+            background-color: var(--gold);
+            color: var(--deep-purple);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            background-color: var(--light-gold);
+            color: var(--deep-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styling */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--deep-purple);
+            font-weight: 700;
+            position: relative;
+        }
+
+        body.dark-mode .section-title {
+            color: var(--gold);
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--gold);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* Menu Catalog */
+        .menu-category {
+            margin-bottom: 30px;
+        }
+
+        .menu-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            background-color: var(--white);
+            height: 100%;
+        }
+
+        body.dark-mode .menu-card {
+            background-color: #1e1e1e;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-card-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .menu-card-img {
+            transform: scale(1.05);
+        }
+
+        .menu-card-body {
+            padding: 20px;
+        }
+
+        .menu-card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--deep-purple);
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode .menu-card-title {
+            color: var(--gold);
+        }
+
+        .menu-card-price {
+            color: var(--light-purple);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .menu-card-button {
+            background-color: var(--deep-purple);
+            color: var(--white);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .menu-card-button:hover {
+            background-color: var(--gold);
+            color: var(--deep-purple);
+        }
+
+        /* Instagram Feed */
+        .instagram-feed {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        body.dark-mode .instagram-feed {
+            background-color: #1a1a1a;
+        }
+
+        .instagram-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .instagram-card:hover {
+            transform: scale(1.03);
+        }
+
+        .instagram-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .instagram-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #E4405F;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .instagram-link:hover {
+            background-color: #c13584;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .testimonial-card {
+            background-color: #1e1e1e;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--light-purple);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-rating {
+            color: var(--gold);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact & Map */
+        .contact-section {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        body.dark-mode .contact-section {
+            background-color: #1a1a1a;
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            background-color: var(--deep-purple);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-detail h5 {
+            color: var(--deep-purple);
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode .contact-detail h5 {
+            color: var(--gold);
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            height: 400px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--deep-purple);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .floating-whatsapp:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 100px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .floating-whatsapp {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div id="loading">
+        <div class="text-center">
+            <div class="loading-logo script-font">Shahnaz Catering</div>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+        <div class="container">
+            <a class="navbar-brand script-font" href="#">Shahnaz Catering</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimoni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <button class="dark-mode-toggle" id="darkModeToggle">
+                            <i class="fas fa-moon"></i> Mode Gelap
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <h1 class="hero-title script-font">Shahnaz Catering</h1>
+            <p class="hero-subtitle">Mudah, Hemat, Praktis untuk Acara Spesial Anda</p>
+            <p class="mb-4">Melayani catering untuk pernikahan, nasi dus, tumpeng, dan acara kantor dengan cita rasa tinggi dan harga terjangkau.</p>
+            <a href="#menu" class="cta-button">Lihat Menu</a>
+            <a href="#contact" class="cta-button">Hubungi Kami</a>
+        </div>
+    </section>
+
+    <!-- Menu Catalog Section -->
+    <section id="menu" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Katalog Menu</h2>
+            
+            <div class="row">
+                <!-- Pernikahan -->
+                <div class="col-lg-3 col-md-6 menu-category">
+                    <div class="menu-card">
+                        <img src="img/nikahan.png" alt="Paket Pernikahan" class="menu-card-img">
+                        <div class="menu-card-body">
+                            <h3 class="menu-card-title">Paket Pernikahan</h3>
+                            <p class="mb-3">Paket lengkap untuk resepsi pernikahan dengan berbagai pilihan menu.</p>
+                            <p class="menu-card-price">Mulai Rp 25.000/pax</p>
+                            <button class="menu-card-button" data-menu="Paket Pernikahan">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nasi Dus -->
+                <div class="col-lg-3 col-md-6 menu-category">
+                    <div class="menu-card">
+                        <img src="img/posting4.png" alt="Nasi Dus" class="menu-card-img">
+                        <div class="menu-card-body">
+                            <h3 class="menu-card-title">Nasi Dus/Kotak</h3>
+                            <p class="mb-3">Nasi kotak praktis untuk rapat, acara keluarga, atau arisan.</p>
+                            <p class="menu-card-price">Mulai Rp 18.000/pax</p>
+                            <button class="menu-card-button" data-menu="Nasi Dus">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tumpeng -->
+                <div class="col-lg-3 col-md-6 menu-category">
+                    <div class="menu-card">
+                        <img src="img/Tumpeng.png" alt="Tumpeng" class="menu-card-img">
+                        <div class="menu-card-body">
+                            <h3 class="menu-card-title">Tumpeng</h3>
+                            <p class="mb-3">Tumpeng lengkap dengan lauk-pauk untuk acara syukuran.</p>
+                            <p class="menu-card-price">Mulai Rp 150.000/tumpeng</p>
+                            <button class="menu-card-button" data-menu="Tumpeng">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Catering Kantor -->
+                <div class="col-lg-3 col-md-6 menu-category">
+                    <div class="menu-card">
+                        <img src="img/kantor.png" alt="Catering Kantor" class="menu-card-img">
+                        <div class="menu-card-body">
+                            <h3 class="menu-card-title">Catering Kantor</h3>
+                            <p class="mb-3">Paket harian/bulanan untuk makan siang karyawan kantor.</p>
+                            <p class="menu-card-price">Mulai Rp 20.000/pax</p>
+                            <button class="menu-card-button" data-menu="Catering Kantor">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed Section -->
+    <section id="instagram" class="instagram-feed py-5">
+        <div class="container">
+            <h2 class="section-title">Update Terbaru Kami</h2>
+            <p class="text-center mb-5">Ikuti aktivitas harian kami di Instagram untuk melihat proses pembuatan hidangan dan dokumentasi acara pelanggan.</p>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="instagram-card">
+                        <img src="img/posting1.png" alt="Acara Community">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="instagram-card">
+                        <img src="img/posting2.png" alt="Tim Shahnaz catering">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="instagram-card">
+                        <img src="img/posting3.png" alt="Acara Pernikahan">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="instagram-card">
+                        <img src="img/posting4.png" alt="Makanan Siap Kirim">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="https://www.instagram.com/shahnaz.catering" target="_blank" class="instagram-link">
+                    <i class="fab fa-instagram me-2"></i> Ikuti @shahnaz.catering
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="about-image">
+                        <img src="img/aboutus.png" alt="Dapur Shahnaz Catering" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h3 class="mb-4">Shahnaz Catering - Solusi Catering Terpercaya Sejak 2015</h3>
+                        <p>Shahnaz Catering didirikan dengan visi memberikan pengalaman kuliner terbaik untuk setiap acara spesial Anda. Dengan pengalaman lebih dari 8 tahun, kami telah melayani ribuan pelanggan dengan berbagai kebutuhan catering, dari pernikahan mewah hingga acara kantor sederhana.</p>
+                        <p>Kami berkomitmen untuk menyajikan hidangan dengan bahan-bahan berkualitas terbaik, dimasak oleh chef berpengalaman, dan disajikan dengan penuh perhatian terhadap detail. Setiap menu dirancang untuk memenuhi selera yang beragam, dengan tetap menjaga cita rasa khas Nusantara.</p>
+                        <p>Prinsip kami adalah "Mudah, Hemat, Praktis" - karena kami percaya bahwa merencanakan acara seharusnya tidak membuat Anda stres. Dari pemesanan hingga penyajian, tim kami akan membantu setiap langkahnya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Testimoni Pelanggan</h2>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Catering dari Shahnaz sangat memuaskan! Untuk pernikahan saya, semua tamu memuji masakannya yang enak dan presentasi yang cantik. Harganya juga terjangkau untuk kualitas yang diberikan."
+                        </div>
+                        <div class="testimonial-author">Sarah & Budi - Pasutri Muda</div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Order nasi kotak untuk 100 orang karyawan. Proses pesan mudah, makanan datang tepat waktu, dan yang penting rasanya enak! Sudah beberapa kali repeat order untuk meeting kantor."
+                        </div>
+                        <div class="testimonial-author">Ahmad - Manager Perusahaan</div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Untuk syukuran anak saya yang baru lahir, saya pesan tumpeng dari Shahnaz. Tumpengnya besar, lauknya lengkap, dan harganya sangat reasonable. Keluarga semua suka!"
+                        </div>
+                        <div class="testimonial-author">Ibu Sari - Orang Tua</div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Kontak & Lokasi Kami</h2>
+            
+            <div class="row mb-5">
+                <div class="col-lg-4 col-md-6 contact-info">
+                    <div class="text-center">
+                        <div class="contact-icon mx-auto">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h5>Alamat</h5>
+                            <p>Jl. Sidomulyo No. 123, Pedan, Klaten, Jawa Tengah</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 contact-info">
+                    <div class="text-center">
+                        <div class="contact-icon mx-auto">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h5>Telepon/WhatsApp</h5>
+                            <p>0896-9186-6746</p>
+                            <p>0859-4536-5017</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 contact-info">
+                    <div class="text-center">
+                        <div class="contact-icon mx-auto">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h5>Jam Operasional</h5>
+                            <p>Senin - Minggu: 08.00 - 20.00 WIB</p>
+                            <p>Buka Setiap Hari</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="map-container">
+                        <!-- Google Maps Embed -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.041169552057!2d110.69485577504423!3d-7.672340292333689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a434a7f7a5727%3A0x27b1003f703e6c6d!2sSidomulyo%2C%20Pedan%2C%20Klaten%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1686562737893!5m2!1sen!2sid" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-logo script-font">Shahnaz Catering</div>
+                    <p class="footer-description">
+                        Menyediakan layanan catering terbaik untuk acara spesial Anda dengan prinsip Mudah, Hemat, Praktis.
+                    </p>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="footer-heading">Menu</h5>
+                    <ul class="footer-links">
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#menu">Katalog Menu</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#testimonials">Testimoni</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading">Layanan</h5>
+                    <ul class="footer-links">
+                        <li><a href="#menu">Paket Pernikahan</a></li>
+                        <li><a href="#menu">Nasi Dus/Kotak</a></li>
+                        <li><a href="#menu">Tumpeng</a></li>
+                        <li><a href="#menu">Catering Kantor</a></li>
+                        <li><a href="#contact">Konsultasi Menu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading">Hubungi Kami</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Sidomulyo, Pedan, Klaten</li>
+                        <li><i class="fas fa-phone me-2"></i> 0812-3456-7890</li>
+                        <li><i class="fab fa-whatsapp me-2"></i> 0812-9876-5432</li>
+                        <li><i class="fab fa-instagram me-2"></i> @shahnaz.catering</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@shahnazcatering.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Shahnaz Catering. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6289691866746?text=Halo%20Shahnaz%20Catering%2C%20saya%20ingin%20bertanya%20tentang%20layanan%20catering%20Anda" target="_blank" class="floating-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Loading Animation
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            loading.style.opacity = '0';
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 500);
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Show loading animation before scroll
+                    const loading = document.getElementById('loading');
+                    loading.style.display = 'flex';
+                    loading.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Hide loading after scroll
+                        loading.style.opacity = '0';
+                        setTimeout(() => {
+                            loading.style.display = 'none';
+                        }, 500);
+                    }, 300);
+                }
+            });
+        });
+
+        // Sticky Navigation
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('sticky-nav');
+            } else {
+                navbar.classList.remove('sticky-nav');
+            }
+        });
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeIcon = darkModeToggle.querySelector('i');
+        
+        darkModeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeIcon.classList.remove('fa-moon');
+                darkModeIcon.classList.add('fa-sun');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Mode Terang';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                darkModeIcon.classList.remove('fa-sun');
+                darkModeIcon.classList.add('fa-moon');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Mode Gelap';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeIcon.classList.remove('fa-moon');
+            darkModeIcon.classList.add('fa-sun');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Mode Terang';
+        }
+
+        // Direct-to-WhatsApp Ordering
+        document.querySelectorAll('.menu-card-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const menuName = this.getAttribute('data-menu');
+                const phoneNumber = '6281234567890'; // Replace with actual number
+                const message = `Halo Shahnaz Catering, saya ingin pesan ${menuName}. Bisa info detail harganya?`;
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                
+                // Show loading before redirecting
+                const loading = document.getElementById('loading');
+                loading.style.display = 'flex';
+                loading.style.opacity = '1';
+                
+                setTimeout(() => {
+                    window.open(whatsappURL, '_blank');
+                    
+                    // Hide loading
+                    loading.style.opacity = '0';
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }, 500);
+            });
+        });
+
+        // Hover Effects for Menu Cards
+        document.querySelectorAll('.menu-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initialize Bootstrap Tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
+</html>
